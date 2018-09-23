@@ -26,6 +26,11 @@ your.external.ip eapusher.dice.se
 
 (**NOTE**: if you are left with the unallocated space after correcting IP, set dots and change the bit-values ​​of the dots to 00)
 
+Also edit the IP in hex.
+Todo so, reverse your ip from ex. 192.168.0.3 to 3.0.168.192, generate the Hexcode for it an paste it at hex-address 0301a8c0
+So 192.168.172.20 becomes  20.172.168.192 becomes 14aca8c0. Use https://www.browserling.com/tools/ip-to-hex   for that.
+
+
 =========
 
 ##Server
