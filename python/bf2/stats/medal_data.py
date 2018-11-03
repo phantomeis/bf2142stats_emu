@@ -376,7 +376,7 @@ def f_mult(a, b, value=None):
 	return _f_mult
 
 
-# medal definitions
+# medal definitions, tempered for less time
 
 medal_data = (	
 		#Badges
