@@ -788,7 +788,7 @@ medal_data = (
 								global_stat ('vkls-7'), 200), 500),
 
 			#Aerial Service Ribbon
-			('317',	'Aesr',	LIMIT_SINGLE, f_and(	player_score ('titanAirDrops', 1),
+			('317',	'Asr',	LIMIT_SINGLE, f_and(	player_score ('titanAirDrops', 1),
 								f_plus(	global_stat ('vtp-10'),
 									global_stat ('vtp-4'), 360)), 500),
 
