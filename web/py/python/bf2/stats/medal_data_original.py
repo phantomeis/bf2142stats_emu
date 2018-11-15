@@ -1002,7 +1002,7 @@ medal_data = (
 			('411', 'Erp', LIMIT_MULTI, player_score_multiple_times ('revives', 8, '411'), 5),
 
 			#Titan survival pin
-			('412', 'Tsp',	LIMIT_MULTI, object_stat_multiple_times ('weapons', 'kills', WEAPON_TYPE_FLIPPER_MINE, 4, '412'), 10),
+			 ('412', 'Tsp',	LIMIT_MULTI, object_stat_multiple_times ('weapons', 'kills', WEAPON_TYPE_FLIPPER_MINE, 4, '412'), 10),
 
 			#Firearm Efficiency Pin
 			('413',	'Fep', LIMIT_MULTI, f_plus(	object_stat_multiple_times ('weapons', 'kills', WEAPON_TYPE_EU_PISTOL, 4, '413', 1),
