@@ -8,7 +8,7 @@ rank_data = {}
 LIMIT_SINGLE = 0		# can get only once in career
 LIMIT_MULTI = 1			# can get several in career and round
 
-
+#This files has been changed for all awards needing 10 times less actual play time to get unlocked. Stats/Points/Requirements for awards havent been touched, also co-op in titanmaps is possible now (her titan/titanlite2 anyone?)
 # criteria functions
 
 def player_score (player_attr, value=None):
@@ -376,11 +376,11 @@ def f_mult(a, b, value=None):
 	return _f_mult
 
 
-# medal definitions
+# medal definitions, all award containing a playtime have been adjusted to take 10 times less time to be unlocked
 
 medal_data = (	
 		#Badges
-			#Support Service Badge 
+			#Support Service Badge, time divided by 10
 
 			#Basic
 			('100_1', 'ssb', LIMIT_SINGLE, object_stat ('kits', 'kills', KIT_TYPE_SUPPORT, 12), 20),
@@ -394,7 +394,7 @@ medal_data = (
 								global_stat ('ktt-3', 18000),
 								object_stat ('kits', 'kills', KIT_TYPE_SUPPORT, 30)), 1000),
 
-			#Recon Service Badge 
+			#Recon Service Badge, time divided by 10
 			('101_1', 'rsb', LIMIT_SINGLE, object_stat ('kits', 'kills', KIT_TYPE_RECON, 12), 20),
 			
 			('101_2', 'rsb', LIMIT_SINGLE, f_and( 	has_medal ('101_1'),
@@ -406,7 +406,7 @@ medal_data = (
 								object_stat ('kits', 'kills', KIT_TYPE_RECON, 30)), 1000),
 
 
-			#Assault Service Badge 
+			#Assault Service Badge, time divided by 10
 			('102_1', 'asb', LIMIT_SINGLE, object_stat ('kits', 'kills', KIT_TYPE_ASSAULT, 12), 20),
 			
 			('102_2', 'asb', LIMIT_SINGLE, f_and( 	has_medal ('102_1'),
@@ -418,7 +418,7 @@ medal_data = (
 								object_stat ('kits', 'kills', KIT_TYPE_ASSAULT, 30)), 1000),
 
 
-			#Anti-Vehicle Badge
+			#Anti-Vehicle Badge, time divided by 10
 			('103_1', 'avsb', LIMIT_SINGLE, object_stat ('kits', 'kills', KIT_TYPE_ANTI_VEHICLE, 12), 20),
 			
 			('103_2', 'avsb', LIMIT_SINGLE, f_and( 	has_medal ('103_1'),
@@ -431,43 +431,41 @@ medal_data = (
 
 
 			#Squad Leader Badge
-			('104_1', 'slsb', LIMIT_SINGLE, player_stat ('squadLeaderBeaconSpawns', 2), 20),
+			('104_1', 'slsb', LIMIT_SINGLE, player_stat ('squadLeaderBeaconSpawns', 10), 20),
 
 			('104_2', 'slsb', LIMIT_SINGLE, f_and( 	has_medal ('104_1'),
-								global_stat ('slpts', 100),
-								player_stat ('squadLeaderBeaconSpawns', 5)), 500), 
+								global_stat ('slpts', 300),
+								player_stat ('squadLeaderBeaconSpawns', 20)), 500), 
 
 			('104_3', 'slsb', LIMIT_SINGLE, f_and( 	has_medal ('104_2'),
-								global_stat ('slpts', 200),
-								player_stat ('squadLeaderBeaconSpawns', 6)), 1000),
+								global_stat ('slpts', 600),
+								player_stat ('squadLeaderBeaconSpawns', 30)), 1000),
 
 			#Collectors Badge
-			('105_1', 'cb',	LIMIT_SINGLE, object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 2), 40),
+			('105_1', 'cb',	LIMIT_SINGLE, object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 7), 40),
 
 			('105_2', 'cb',	LIMIT_SINGLE, f_and( 	has_medal ('105_1'),
 								global_stat ('wkls-12', 50),
-								object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 5)), 500),
+								object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 10)), 500),
 
 			('105_3', 'cb',	LIMIT_SINGLE, f_and( 	has_medal ('105_2'),
-								global_stat ('wkls-12', 100),
-								object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 10)), 1000),
+								global_stat ('wkls-12', 150),
+								object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 17)), 1000),
 
 	
 			#Pistol Commendation Badge
 			('106_1', 'pcb', LIMIT_SINGLE, f_plus(	object_stat ('weapons', 'kills', WEAPON_TYPE_EU_PISTOL),
 								object_stat ('weapons', 'kills', WEAPON_TYPE_PAC_PISTOL), 5), 20),
-
 			('106_2', 'pcb', LIMIT_SINGLE, f_and( 	has_medal ('106_1'),
-								f_plus(	global_stat ('wkls-5'),
-									global_stat ('wkls-11'), 25),
-								f_plus(	object_stat ('weapons', 'kills', WEAPON_TYPE_EU_PISTOL),
-									object_stat ('weapons', 'kills', WEAPON_TYPE_PAC_PISTOL), 7)), 500),
-
-			('106_3', 'pcb', LIMIT_SINGLE, f_and( 	has_medal ('106_2'),
 								f_plus(	global_stat ('wkls-5'),
 									global_stat ('wkls-11'), 50),
 								f_plus(	object_stat ('weapons', 'kills', WEAPON_TYPE_EU_PISTOL),
-									object_stat ('weapons', 'kills', WEAPON_TYPE_PAC_PISTOL), 10)), 100),
+									object_stat ('weapons', 'kills', WEAPON_TYPE_PAC_PISTOL), 7)), 500),
+			('106_3', 'pcb', LIMIT_SINGLE, f_and( 	has_medal ('106_2'),
+								f_plus(	global_stat ('wkls-5'),
+									global_stat ('wkls-11'), 300),
+								f_plus(	object_stat ('weapons', 'kills', WEAPON_TYPE_EU_PISTOL),
+									object_stat ('weapons', 'kills', WEAPON_TYPE_PAC_PISTOL), 18)), 1000),
 
 
 			#Explosive Gallantry Badge
@@ -492,15 +490,14 @@ medal_data = (
 										object_stat ('weapons', 'kills', WEAPON_TYPE_MINE), 20)), 1000),
 
 
-			#Air Defense Badge
+			#Air Defense Badge, divided by 10
 			('108_1', 'adb',LIMIT_SINGLE, f_plus(	f_plus(	object_stat ('vehicles', 'rtime', VEHICLE_TYPE_ANTI_AIR),
 									object_stat ('weapons', 'rtime', WEAPON_TYPE_VEHICLE_AA)),
 									object_stat ('vehicles', 'rtime', VEHICLE_TYPE_TITAN_AA), 180), 20),
-
 			('108_2', 'adb', LIMIT_SINGLE, f_and( 	has_medal ('108_1'),
 								f_plus( f_plus( global_stat ('vtp-3'),
 										global_stat ('wtp-30')),
-							 			global_stat ('vtp-12'), 360),
+							 			global_stat ('vtp-12'), 7200),
 								f_plus(	f_plus(	object_stat ('vehicles', 'kills', VEHICLE_TYPE_TITAN_AA),
 										object_stat ('vehicles', 'kills', VEHICLE_TYPE_ANTI_AIR)),
 										object_stat ('weapons', 'kills', WEAPON_TYPE_VEHICLE_AA), 15)), 500),
@@ -508,84 +505,84 @@ medal_data = (
 			('108_3', 'adb', LIMIT_SINGLE, f_and( 	has_medal ('108_2'),
 								f_plus( f_plus( global_stat ('vtp-3'),
 										global_stat ('wtp-30')),
-							 			global_stat ('vtp-12'), 360),
+							 			global_stat ('vtp-12'), 18000),
 								f_plus(	f_plus(	object_stat ('vehicles', 'kills', VEHICLE_TYPE_TITAN_AA),
 										object_stat ('vehicles', 'kills', VEHICLE_TYPE_ANTI_AIR)),
 										object_stat ('weapons', 'kills', WEAPON_TYPE_VEHICLE_AA), 30)), 1000),
 
 			#Commander Exellence Badge
 			('109_1', 'ceb', LIMIT_SINGLE, f_and( 	player_score('cmdPyScore', 30),
-								f_mult(	game_mode_time (3, 1), 
+								f_mult(	game_mode_time (0, 1), 
 									player_score('cmdPyScore'), 1)), 40),
 
 			('109_2', 'ceb', LIMIT_SINGLE, f_and( 	has_medal ('109_1'),
 								global_stat ('csgpm-0', 1000),
-								f_mult(	game_mode_time (3, 1), 
+								f_mult(	game_mode_time (0, 1), 
 									player_stat('timeAsCmd'), 1200)), 500),
 
 			('109_3', 'ceb', LIMIT_SINGLE, f_and( 	has_medal ('109_2'),
 								global_stat ('csgpm-0', 4000),
-								f_mult(	game_mode_time (3, 1), 
+								f_mult(	game_mode_time (0, 1), 
 									player_stat('timeAsCmd'), 1500)), 1000),
 
 
 			#Titan Commander Badge
 			('110_1', 'tcb', LIMIT_SINGLE, f_and( 	player_score('cmdPyScore', 30),
-								f_mult(	game_mode_time (3, 1), 
+								f_mult(	game_mode_time (1, 1), 
 									player_score('cmdPyScore'), 1)), 40),
 
 			('110_2', 'tcb', LIMIT_SINGLE, f_and( 	has_medal ('110_1'),
-								global_stat ('csgpm-3', 1000),
-								f_mult(	game_mode_time (3, 1), 
+								global_stat ('csgpm-1', 1000),
+								f_mult(	game_mode_time (1, 1), 
 									player_stat('timeAsCmd'), 1200)), 500),
 
 			('110_3', 'tcb', LIMIT_SINGLE, f_and( 	has_medal ('110_2'),
-								global_stat ('csgpm-3', 4000),
-								f_mult(	game_mode_time (3, 1), 
+								global_stat ('csgpm-1', 4000),
+								f_mult(	game_mode_time (1, 1), 
 									player_stat('timeAsCmd'), 1500)), 1000),
 
 
-			#Engineer Exellence Badge
+			#Engineer Exellence Badge, time divided by 10
 			('111_1', 'eeb', LIMIT_SINGLE, player_score ('repairs', 8), 20),
 
 			('111_2', 'eeb', LIMIT_SINGLE, f_and( 	has_medal ('111_1'),
-								global_stat ('etpk-1', 360),
+								global_stat ('etpk-1', 3600),
 								player_score ('repairs', 10)), 500),
 
 			('111_3', 'eeb', LIMIT_SINGLE, f_and( 	has_medal ('111_2'),
-								global_stat ('etpk-1', 720),
+								global_stat ('etpk-1', 21600),
 								global_stat ('rps', 200),
 								player_score ('repairs', 15)), 1000),
 
-			#Medic Exellence Badge
+			#Medic Exellence Badge, time divided by 10
 			('112_1', 'meb', LIMIT_SINGLE, player_score ('heals', 8), 20),
 
 			('112_2', 'meb', LIMIT_SINGLE, f_and( 	has_medal ('112_1'),
-								f_or(	f_or(	global_stat ('etpk-0', 1800),
-										global_stat ('etpk-2', 1800)),
-										global_stat ('etpk-5', 1800)),
+								f_or(	f_or(	global_stat ('etpk-0', 3600),
+										global_stat ('etpk-2', 3600)),
+										global_stat ('etpk-5', 3600)),
 								player_score ('heals', 10)), 500),
 
 			('112_3', 'meb', LIMIT_SINGLE, f_and( 	has_medal ('112_2'),
-								f_or(	f_or(	global_stat ('etpk-0', 2000),
-										global_stat ('etpk-2', 2000)),
-										global_stat ('etpk-5', 2000)),
+								f_or(	f_or(	global_stat ('etpk-0', 21600),
+										global_stat ('etpk-2', 21600)),
+										global_stat ('etpk-5', 21600)),
 								global_stat ('hls', 400),
 								player_score ('heals', 15)), 1000),
 
-			#Resupply Service Badge
+			#Resupply Service Badge, time divided by 10
 			('113_1', 'resb', LIMIT_SINGLE, player_score ('ammos', 8), 20),
 
 			('113_2', 'resb', LIMIT_SINGLE, f_and( 	has_medal ('113_1'),
-								global_stat ('etpk-6', 1800),
+								global_stat ('etpk-6', 3600),
 								player_score ('ammos', 10)), 500),
 
 			('113_3', 'resb', LIMIT_SINGLE, f_and( 	has_medal ('113_2'),
-								global_stat ('etpk-6', 2000),
+								global_stat ('etpk-6', 18000),
 								global_stat ('resp', 400),
 								player_score ('ammos', 15)), 1000),
 
-			#Armor Service Badge  
+			#Armor Service Badge, times divided by 10  
 			('114_1', 'arsb', LIMIT_SINGLE, f_plus(	object_stat ('vehicles', 'rtime', VEHICLE_TYPE_TANK),
 								object_stat ('vehicles', 'rtime', VEHICLE_TYPE_MEC), 900), 20),
 
@@ -604,7 +601,7 @@ medal_data = (
 										global_stat ('vtp-1')),
 										global_stat ('vtp-2'), 18000)), 1000),
 
-			#Helicopter Service Badge
+			#Helicopter Service Badge, times divided by 10
 			('115_1', 'hsb', LIMIT_SINGLE, f_plus(	object_stat ('vehicles', 'rtime', VEHICLE_TYPE_ATTACK_AIR),
 								object_stat ('vehicles', 'rtime', VEHICLE_TYPE_TRANSP_AIR), 900), 20),
 
@@ -620,7 +617,7 @@ medal_data = (
 								f_plus(	global_stat ('vtp-4'),
 									global_stat ('vtp-10'), 18000)), 1000),
 
-			#Transport Service Badge
+			#Transport Service Badge, times divided by 10
 			('116_1', 'tsb', LIMIT_SINGLE, f_plus(	f_plus(	object_stat ('vehicles', 'rtime', VEHICLE_TYPE_APC),
 									object_stat ('vehicles', 'rtime', VEHICLE_TYPE_FAAV)),
 									object_stat ('vehicles', 'rtime', VEHICLE_TYPE_TRANSP_AIR), 600), 20),
@@ -628,7 +625,7 @@ medal_data = (
 			('116_2', 'tsb', LIMIT_SINGLE, f_and( 	has_medal ('116_1'),
 								f_plus(	f_plus(	object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_APC),
 										object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_FAAV)),
-										object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_TRANSP_AIR), 2),
+										object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_TRANSP_AIR), 5),
 								f_plus(	f_plus(	global_stat ('vtp-1'),
 										global_stat ('vtp-6')),
 										global_stat ('vtp-4'), 9000)), 500),
@@ -636,12 +633,12 @@ medal_data = (
 			('116_3', 'tsb', LIMIT_SINGLE, f_and( 	has_medal ('116_2'),
 								f_plus(	f_plus(	object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_APC),
 										object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_FAAV)),
-										object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_TRANSP_AIR), 4),
+										object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_TRANSP_AIR), 12),
 								f_plus(	f_plus(	global_stat ('vtp-1'),
 										global_stat ('vtp-6')),
 										global_stat ('vtp-4'), 14400)), 1000),
 
-			#Titan Combat Exellence Badge
+			#Titan Combat Exellence Badge, times divided by 10, also co-op ready
 			('117_1', 'tceb', LIMIT_SINGLE, player_score ('titanAttackKills', 8), 20),
 
 			('117_2', 'tceb', LIMIT_SINGLE, f_and( 	has_medal ('117_1'),
@@ -652,7 +649,7 @@ medal_data = (
 								player_score ('titanAttackKills', 30),
 								global_stat ('tgpm-3', 21600)), 1000),
 
-			#Titan Defense Exellence Badge
+			#Titan Defense Exellence Badge, times divided by 10, also co-op ready
 			('118_1', 'tdeb', LIMIT_SINGLE, player_score ('titanDefendKills', 8), 20),
 
 			('118_2', 'tdeb', LIMIT_SINGLE, f_and( 	has_medal ('118_1'),
@@ -682,53 +679,53 @@ medal_data = (
 			#Air Defense Ribbon
 			('300',	'Adr', LIMIT_SINGLE, f_and(	f_plus( f_plus(	object_stat ('vehicles', 'rtime', VEHICLE_TYPE_ANTI_AIR),
 										object_stat ('weapons', 'rtime', WEAPON_TYPE_VEHICLE_AA)),
-										object_stat ('vehicles', 'rtime', VEHICLE_TYPE_TITAN_AA), 30),
+										object_stat ('vehicles', 'rtime', VEHICLE_TYPE_TITAN_AA), 300),
 								f_plus( f_plus(	object_stat ('vehicles', 'kills', VEHICLE_TYPE_ANTI_AIR),
 										object_stat ('weapons', 'kills', WEAPON_TYPE_VEHICLE_AA)),
-							 			object_stat ('vehicles', 'kills', VEHICLE_TYPE_TITAN_AA), 2)), 30),
+							 			object_stat ('vehicles', 'kills', VEHICLE_TYPE_TITAN_AA), 15)), 30),
 
 
 			#Helicopter Service Ribbon
 			('301',	'Hsr', LIMIT_SINGLE, f_and(	f_plus( object_stat ('vehicles', 'rtime', VEHICLE_TYPE_TRANSP_AIR),
-									object_stat ('vehicles', 'rtime', VEHICLE_TYPE_ATTACK_AIR), 300),
+									object_stat ('vehicles', 'rtime', VEHICLE_TYPE_ATTACK_AIR), 600),
 								f_plus( object_stat ('vehicles', 'kills', VEHICLE_TYPE_TRANSP_AIR),
-									object_stat ('vehicles', 'kills', VEHICLE_TYPE_ATTACK_AIR), 10)), 30),
+									object_stat ('vehicles', 'kills', VEHICLE_TYPE_ATTACK_AIR), 20)), 30),
 
 			#HALO Ribbon
-			('302',	'Hr',	LIMIT_SINGLE, object_stat ('vehicles', 'rtime', VEHICLE_TYPE_PARACHUTE, 10), 2000),
+			('302',	'Hr',	LIMIT_SINGLE, object_stat ('vehicles', 'rtime', VEHICLE_TYPE_PARACHUTE, 10), 20),
 
 
-			#Infantry Officer Ribbon
+			#Infantry Officer Ribbon, times divided by 10
 			('303',	'Ior',	LIMIT_SINGLE, f_and(	player_stat ('timeAsSql', 1200),
-								global_stat ('tasl', 3600)), 500),
+								global_stat ('tasl', 14400)), 500),
 
 
-			#Combat Commander Ribbon
+			#Combat Commander Ribbon, times divided by 10
 			('304',	'Ccr',	LIMIT_SINGLE, f_and(	player_stat ('timeAsCmd', 1200),
 								player_score ('cmdPyScore', 40),
-								global_stat ('tac', 3600)), 2000),
+								global_stat ('tac', 28800)), 2000),
 
-			#Distinguished Unit Service Ribbon
+			#Distinguished Unit Service Ribbon, times divided by 10
 			('305',	'Dusr',	LIMIT_SINGLE, f_and(	player_score ('rplScore', 15),
 								global_stat ('tasm', 3600),
 								global_stat ('tasl', 3600),
 								global_stat ('tac', 3600)), 500),
 
 
-			#Meritorius Unit Service Ribbon
+			#Meritorius Unit Service Ribbon, times divided by 10
 			('306',	'Musr',	LIMIT_SINGLE, f_and(	player_stat ('timeInSquad', 1080), 
-								player_score ('rplScore', 15),
+								player_score ('rplScore', 40),
 								global_stat ('tasm', 7200)), 500),
 
-			#Valorous Unit Service Ribbon
+			#Valorous Unit Service Ribbon, times divided by 10
 			('307',	'Vusr',	LIMIT_SINGLE, f_and(	player_score ('rplScore', 55),
 								global_stat ('tasm', 9000),
 								global_stat ('tasl', 18000)), 2000),
 
 
-			#War College Ribbon
+			#War College Ribbon, times divided by 10
 			('308',	'Wcr', LIMIT_SINGLE, f_and(	player_score ('cmdPyScore', 45),
-								global_stat ('tac', 7200),
+								global_stat ('tac', 21600),
 								f_div (	global_stat ('win'), 
     									global_stat ('los'), 2)), 2000),
 
@@ -743,7 +740,7 @@ medal_data = (
 										object_stat ('vehicles', 'kills', VEHICLE_TYPE_APC), 20)), 30),
 
 
-			#Crew Service Ribbon
+			#Crew Service Ribbon, times divided by 10
 			('310',	'Csr', LIMIT_SINGLE, f_and(	f_plus (f_plus(	global_stat ('vtp-0'),
 										global_stat ('vtp-1')),
 									f_plus(	global_stat ('vtp-2'),
@@ -751,24 +748,24 @@ medal_data = (
 								f_plus (f_plus(	object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_MEC),
 										object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_TANK)),
 									f_plus(	object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_APC),
-										object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_FAAV)), 5)), 50),
+										object_stat ('vehicles', 'roadKills', VEHICLE_TYPE_FAAV)), 10)), 50),
 
-			#Pac Duty Ribbon
+			#Pac Duty Ribbon, times divided by 10
 			('311',	'Pdr',	LIMIT_SINGLE, f_and(	 f_plus( 	army_time (1), 
-								global_stat('attp-1'), 7200),
+								global_stat('attp-1'), 43200),
 								played_all_maps(1)), 50),			
 
 
-			#European Duty Ribbon
+			#European Duty Ribbon, times divided by 10
 			('312',	'Edr',	LIMIT_SINGLE, f_and(	 f_plus( 	army_time (0), 
-								global_stat('attp-0'), 7200),
+								global_stat('attp-0'), 43200),
 								played_all_maps(0)), 50),		
 			#Soldier Merit Ribbon
 			('313',	'Smr',	LIMIT_SINGLE, f_and(	player_score('kills', 20),
 								f_plus(	global_stat('bksgpm-0'), 
-							     		global_stat('bksgpm-3'), 10)), 200),
+							     		global_stat('bksgpm-1'), 10)), 50),
 
-			#Good Conduct Ribbon
+			#Good Conduct Ribbon, times divided by 10
 			('314',	'Gcr',	LIMIT_SINGLE, f_and(	player_score ('kills', 10),
 								f_plus( player_stat ('timePlayed'),
 									global_stat ('tt'), 18000),
@@ -776,30 +773,30 @@ medal_data = (
 										f_plus(	player_score ('teamDamages'), 
 											player_score ('teamVehicleDamages')), 1))), 500),
 		
-			#Legion Of Merit Ribbon
+			#Legion Of Merit Ribbon, times divided by 10, co-op ready
 			('315',	'Lomr',	LIMIT_SINGLE, f_and(	player_score ('kills', 10),
-								f_plus( global_stat('bksgpm-0'), 
-						     			global_stat('bksgpm-3'), 10),
+								f_plus( global_stat('bksgpm-0'),
+									global_stat('bksgpm-3'), 10),
 								f_plus( player_stat ('timePlayed'),
-									global_stat ('tt'), 18200)), 2000),
+									global_stat ('tt'), 43200)), 2000),
 
 			#Ground Base Defense Ribbon
 			('316',	'Gbdr',	LIMIT_SINGLE, f_plus(	object_stat ('vehicles', 'kills', VEHICLE_TYPE_GDEF),
 								global_stat ('vkls-7'), 200), 500),
 
-			#Aerial Service Ribbon
-			('317',	'Aesr',	LIMIT_SINGLE, f_and(	player_score ('titanAirDrops', 1),
+			#Aerial Service Ribbon, times divided by 10
+			('317',	'Aesr',	LIMIT_SINGLE, f_and(	player_score ('titanAirDrops', 15),
 								f_plus(	global_stat ('vtp-10'),
-									global_stat ('vtp-4'), 360)), 500),
+									global_stat ('vtp-4'), 9000)), 500),
 
-			#Titan Aerial Defense Ribbon
+			#Titan Aerial Defense Ribbon, times divided by 10
 			('318',	'Tadr',	LIMIT_SINGLE, f_and(	object_stat ('vehicles', 'kills', VEHICLE_TYPE_TITAN_AA, 5),
 								f_plus( object_stat ('vehicles', 'rtime', VEHICLE_TYPE_TITAN_AA),
-									global_stat ('vtp-12'), 360)), 50),
+									global_stat ('vtp-12'), 3600)), 50),
 
-			#Titan Commander Ribbon
+			#Titan Commander Ribbon, times divided by 10, co-op ready
 			('319',	'Tcr',	LIMIT_SINGLE, f_and(	player_score('cmdTitanScore', 10),
-								global_stat('ctgpm-3', 3600)), 500),
+								global_stat('ctgpm-3', 9000)), 500),
 
 		#Medals
 			
@@ -815,7 +812,7 @@ medal_data = (
 			#'202'
 
 
-			#Distinguished Service Medal
+			#Distinguished Service Medal, times divided by 10
 			('203',	'Dsm', LIMIT_SINGLE, f_and(	player_score ('rplScore', 30),
 								global_stat ('tac', 18000),
 								global_stat ('tasm', 18000),
@@ -854,7 +851,7 @@ medal_data = (
 								has_medal('107_3', 1)), 0),
 
 
-			#Medal of Gallantry
+			#Medal of Gallantry, times and points divided by 10
 			('207', 'Mog', 	LIMIT_SINGLE, 	f_and(	f_plus(	player_stat ('timePlayed'),
 									global_stat ('tt'), 54000),
 								f_plus(	player_score ('rplScore'),
@@ -862,22 +859,22 @@ medal_data = (
 								f_plus(	player_score ('cpCaptures'),
 									global_stat ('cpt'), 100),
 								f_plus(	player_score ('cpDefends'),
-									global_stat ('dcpt'), 100)), 0),
+									global_stat ('dcpt'), 40)), 0),
 	
-			#European Honorific Cross 
+			#European Honorific Cross, times divided by 10
 			('208', 'Ehc', LIMIT_SINGLE, 	f_and(	army_time (0, 180),
 								global_stat ('attp-0', 5400),
-								global_stat ('awin-0', 50)), 0),
+								global_stat ('awin-0', 300)), 0),
 	
 
 			
-			#Distinguished Pan Asian Star
+			#Distinguished Pan Asian Star, times divided by 10
 			('209', 'Dpa', LIMIT_SINGLE, 	f_and(	army_time (1, 180),
 								global_stat ('attp-1', 5400),
-								global_stat ('awin-1', 50)), 0),
+								global_stat ('awin-1', 300)), 0),
 
 
-			#Meritorius Conquest Medal
+			#Meritorius Conquest Medal, times divided by 10
 			('210', 'Mcm', LIMIT_SINGLE, 	f_and(	has_medal('410', 1),
 								f_plus( game_mode_time (0), 
 									global_stat ('tgpm-0'), 2880),
@@ -885,23 +882,23 @@ medal_data = (
 									global_stat('bksgpm-0', 25)), 0),
 
 
-			#Meritorius Titan Medal
+			#Meritorius Titan Medal, times divided by 10, co-op ready
 			('211',	'Mtm', LIMIT_SINGLE, f_and(	f_and(	has_medal('402', 1),
 									f_plus( game_mode_time (1), 
 										global_stat ('tgpm-3'), 2880)),
 										global_stat('kgpm-3', 800),
 										global_stat('bksgpm-3', 25)), 0),
 
-			#Helicopter Combat Medal
+			#Helicopter Combat Medal, times divided by 10
 			('212',	'Hcm', LIMIT_SINGLE, f_and(	f_plus(	object_stat('vehicles', 'kills', VEHICLE_TYPE_ATTACK_AIR),
-									object_stat('vehicles', 'kills', VEHICLE_TYPE_TRANSP_AIR), 10),
+									object_stat('vehicles', 'kills', VEHICLE_TYPE_TRANSP_AIR), 30),
 								f_plus(	global_stat('vtp-10'), 	
 									global_stat('vtp-4'), 36000),
 								f_plus(	global_stat('vkls-10'), 	
-									global_stat('vkls-4'), 400)), 0),
+									global_stat('vkls-4'), 800)), 0),
 
 
-			#Armor Service Medal
+			#Armor Service Medal, times divided by 10
 			('213',	'Asm', LIMIT_SINGLE, f_and(	f_plus(	f_plus( object_stat('vehicles', 'kills', VEHICLE_TYPE_MEC),
 										object_stat('vehicles', 'kills', VEHICLE_TYPE_TANK)),
 										object_stat('vehicles', 'kills', VEHICLE_TYPE_APC), 25),
@@ -910,17 +907,17 @@ medal_data = (
 										global_stat('vtp-1'), 36000),
 								f_plus(	f_plus( global_stat('vkls-0'),
 										global_stat('vkls-2')),
-										global_stat('vkls-1'), 400)), 0),
+										global_stat('vkls-1'), 800)), 0),
 
-			#Good Conduct Medal
+			#Good Conduct Medal, times divided by 10
 			('214',	'Gcm', LIMIT_SINGLE, f_and(	player_score ('kills', 27),
 								f_plus(	player_stat ('timePlayed'),
-									global_stat ('tt'), 7200),
+									global_stat ('tt'), 64800),
 								f_not (	f_plus(	player_score ('TKs'),
 										f_plus(	player_score ('teamDamages'), 
 											player_score ('teamVehicleDamages')), 1))), 0),
 
-			#Honorable Service Medal
+			#Honorable Service Medal, times divided by 10
 			('215', 'Hsm', LIMIT_SINGLE, f_and( 	f_plus(	player_stat ('timePlayed'),
 										global_stat ('tt'), 36000),
 									f_plus(	player_score ('heals'),
@@ -936,38 +933,38 @@ medal_data = (
 								player_score ('dkRatio', 4)), 0),
 
 
-			#Air Transport Transfer Medal
+			#Air Transport Transfer Medal, times divided by 10
 			('217',	'Attm',	LIMIT_SINGLE, f_and(	player_score('titanAirDrops', 10),
 								global_stat('vtp-4', 9000)),  0),
 
-			#Titan Medallion
+			#Titan Medallion, times divided by 10, co-op ready, best player count set to 20 from 70
 			('218',	'Tme',	LIMIT_SINGLE, f_and(	f_plus (	game_mode_time (1),
 								global_stat ('tgpm-3'), 5400),
 								game_mode_kills (3, 10),
-								gpm_bestRound (3, 40)), 0),
+								gpm_bestRound (3, 70)), 0),
 
 			#Ground Base Medallion
 			('219',	'Gbm',	LIMIT_SINGLE, f_and(	player_score ('kills', 20),
-								global_stat('cpt', 50),
-								global_stat('rps', 40)),  0),
+								global_stat('cpt', 100),
+								global_stat('rps', 70)),  0),
 
 		#Pins
 
 			#Combat efficiency pin
 			('400',	'Cep',	LIMIT_MULTI, f_and (	f_not( player_stat ('currentKillStreak', 6)), 
 								f_not( player_stat ('currentKillStreakMedalSecond', 6)),
-						   		player_stat_set ('currentKillStreakMedal', 5, 0)), 10),
+						   		player_stat_set ('currentKillStreakMedal', 5, 0)), 5),
 
 			#Distinguished Combat efficiency pin
 			('401',	'Dcep',	LIMIT_MULTI, f_and (	f_not( player_stat ('currentKillStreak', 11)),  
 								player_stat_set ('currentKillStreakMedalSecond', 10, 0),
-								player_stat_set ('currentKillStreakMedal', 5, 0)), 20),
+								player_stat_set ('currentKillStreakMedal', 5, 0)), 10),
 	
 			#Problem solver Pin
-			('402',	'Psp', LIMIT_MULTI, player_score_multiple_times ('titanPartsDestroyed', 1, '402'), 10),
+			('402',	'Psp', LIMIT_MULTI, player_score_multiple_times ('titanPartsDestroyed', 4, '402'), 20),
 			
 			#Titan Destructor Pin
-			('403',	'Tdsp', LIMIT_MULTI, player_score_multiple_times ('titanWeaponsDestroyed', 1, '403'), 10),
+			('403',	'Tdsp', LIMIT_MULTI, player_score_multiple_times ('titanWeaponsDestroyed', 4, '403'), 20),
 
 			#Troop Transporter Pin
 			('404',	'Ttp', LIMIT_MULTI, player_score_multiple_times ('titanAirDrops', 10, '404'), 20),
@@ -977,7 +974,7 @@ medal_data = (
 
 
 			#Titan Defender Pin
-			('406',	'Tdep', LIMIT_MULTI, player_score_multiple_times ('titanDefendKills', 5, '406'), 20),
+			('406',	'Tdep', LIMIT_MULTI, player_score_multiple_times ('titanDefendKills', 7, '406'), 20),
 
 			#Infiltrator Pin   
 			('407',	'Ip', LIMIT_MULTI, f_plus( 	f_plus(	object_stat_multiple_times ('weapons', 'headShots', WEAPON_TYPE_PAC_SNIPER, 5, '407', 1),
@@ -988,7 +985,7 @@ medal_data = (
 			('408',	'Wohp',	LIMIT_MULTI, f_plus (	f_plus(	object_stat_multiple_times ('vehicles', 'roadKills', VEHICLE_TYPE_MEC, 5, '408', 1),
 									object_stat_multiple_times ('vehicles', 'roadKills', VEHICLE_TYPE_TANK, 5, '408', 1)),
 								f_plus(	object_stat_multiple_times ('vehicles', 'roadKills', VEHICLE_TYPE_APC, 5, '408', 1),
-									object_stat_multiple_times ('vehicles', 'roadKills', VEHICLE_TYPE_FAAV, 5, '408', 1)), 5), 50),
+									object_stat_multiple_times ('vehicles', 'roadKills', VEHICLE_TYPE_FAAV, 5, '408', 1)), 5), 5),
 
 			#Collectors Pin
 			('409',	'Cp', LIMIT_MULTI, object_stat_multiple_times ('weapons', 'kills', WEAPON_TYPE_KNIFE, 8, '409'), 20),
