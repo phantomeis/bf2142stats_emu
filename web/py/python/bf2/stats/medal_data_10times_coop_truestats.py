@@ -510,19 +510,19 @@ medal_data = (
 										object_stat ('vehicles', 'kills', VEHICLE_TYPE_ANTI_AIR)),
 										object_stat ('weapons', 'kills', WEAPON_TYPE_VEHICLE_AA), 30)), 1000),
 
-			#Commander Exellence Badge
+			#Commander Exellence Badge, badge now works for Co-op
 			('109_1', 'ceb', LIMIT_SINGLE, f_and( 	player_score('cmdPyScore', 30),
-								f_mult(	game_mode_time (0, 1), 
+								f_mult(	game_mode_time (3, 1), 
 									player_score('cmdPyScore'), 1)), 40),
 
 			('109_2', 'ceb', LIMIT_SINGLE, f_and( 	has_medal ('109_1'),
 								global_stat ('csgpm-0', 1000),
-								f_mult(	game_mode_time (0, 1), 
+								f_mult(	game_mode_time (3, 1), 
 									player_stat('timeAsCmd'), 1200)), 500),
 
 			('109_3', 'ceb', LIMIT_SINGLE, f_and( 	has_medal ('109_2'),
 								global_stat ('csgpm-0', 4000),
-								f_mult(	game_mode_time (0, 1), 
+								f_mult(	game_mode_time (3, 1), 
 									player_stat('timeAsCmd'), 1500)), 1000),
 
 
@@ -533,7 +533,7 @@ medal_data = (
 
 			('110_2', 'tcb', LIMIT_SINGLE, f_and( 	has_medal ('110_1'),
 								global_stat ('csgpm-1', 1000),
-								f_mult(	game_mode_time (1, 1), 
+								f_mult(	game_mode_time (1, 1),
 									player_stat('timeAsCmd'), 1200)), 500),
 
 			('110_3', 'tcb', LIMIT_SINGLE, f_and( 	has_medal ('110_2'),
@@ -674,6 +674,15 @@ medal_data = (
 								player_score ('titanCoreDestroyed', 1),
 								f_plus(	global_stat ('tcd'),
 									global_stat ('tcrd'), 40)), 1000),
+		#Artic Combat Badge   THIS AWARD IS BULLSHIT BECAUSE NORTHERNSTRIKE MAPS/VEHICLES ARENT EVEN IN THE DATABASE
+		#('120_1', 'acb', LIMIT_SINGLE, f_plus( object_stat ('vehicles', 'rtime', VEHICLE_TYPE_HOVER_FAV),
+		#					object_stat ('vehicles', 'rtime', VEHICLE_TYPE_IFV), 300), 20),
+		#('120_2', 'acb', LIMIT_SINGLE, f_and( f_plus( global_stat() )),500),					
+
+
+		
+		
+		#Vehicle Excellence Badge
 		#Ribbons
 
 			#Air Defense Ribbon
@@ -759,11 +768,13 @@ medal_data = (
 			#European Duty Ribbon, times divided by 10
 			('312',	'Edr',	LIMIT_SINGLE, f_and(	 f_plus( 	army_time (0), 
 								global_stat('attp-0'), 43200),
-								played_all_maps(0)), 50),		
-			#Soldier Merit Ribbon
+								played_all_maps(0)), 50),
+								
+			#Soldier Merit Ribbon, ready for coop
 			('313',	'Smr',	LIMIT_SINGLE, f_and(	player_score('kills', 20),
 								f_plus(	global_stat('bksgpm-0'), 
-							     		global_stat('bksgpm-1'), 10)), 50),
+							     		global_stat('bksgpm-1'),
+										global_stat('bksgpm-3'), 10)), 50),
 
 			#Good Conduct Ribbon, times divided by 10
 			('314',	'Gcr',	LIMIT_SINGLE, f_and(	player_score ('kills', 10),
@@ -776,7 +787,8 @@ medal_data = (
 			#Legion Of Merit Ribbon, times divided by 10, co-op ready
 			('315',	'Lomr',	LIMIT_SINGLE, f_and(	player_score ('kills', 10),
 								f_plus( global_stat('bksgpm-0'),
-									global_stat('bksgpm-3'), 10),
+										global_stat('bksgpm-1'),
+										global_stat('bksgpm-3'), 10),
 								f_plus( player_stat ('timePlayed'),
 									global_stat ('tt'), 43200)), 2000),
 
@@ -797,6 +809,14 @@ medal_data = (
 			#Titan Commander Ribbon, times divided by 10, co-op ready
 			('319',	'Tcr',	LIMIT_SINGLE, f_and(	player_score('cmdTitanScore', 10),
 								global_stat('ctgpm-3', 9000)), 500),
+
+			#Operation Snowflake
+			
+			#Cold Front Unit Service Ribbon
+			
+			#Transporter Duty Ribbon
+			
+			#Meritorius Winterstrike Ribbon
 
 		#Medals
 			
@@ -821,24 +841,45 @@ medal_data = (
 
 			#Infantry Combat Medal
 			('204',	'Icm', LIMIT_SINGLE, f_and(	has_medal('401', 1),
-								has_medal('105_1', 1),
-								has_medal('106_1', 1),
-								has_medal('102_1', 1),
-								has_medal('103_1', 1),
-								has_medal('101_1', 1),
-								has_medal('100_1', 1),
-								has_medal('107_1', 1)), 0),
-								
+								f_or(has_medal('105_1', 1),
+									has_medal('105_2', 1),
+									has_medal('105_3', 1)),
+								f_or(has_medal('106_1', 1),
+									has_medal('106_2', 1),
+									has_medal('106_3', 1)),
+								f_or(has_medal('102_1', 1),
+									has_medal('102_2', 1),
+									has_medal('102_3', 1)),
+								f_or(has_medal('103_1', 1),
+									has_medal('103_2', 1),
+									has_medal('103_3', 1)),
+								f_or(has_medal('101_1', 1),
+									has_medal('101_2', 1),
+									has_medal('101_3', 1)),
+								f_or(has_medal('100_1', 1),
+									has_medal('100_2', 1),
+									has_medal('100_3', 1)),
+								f_or(has_medal('107_1', 1),
+									has_medal('107_2', 1),
+									has_medal('107_3', 1))), 0),
+
 
 			#Meritorius Infantry Combat Badge
 			('205',	'Micb',	LIMIT_SINGLE, 	f_and(	has_medal('401', 1),
-								has_medal('105_2', 1),
-								has_medal('106_2', 1),
-								has_medal('102_2', 1),
-								has_medal('103_2', 1),
-								has_medal('101_2', 1),
-								has_medal('100_2', 1),
-								has_medal('107_2', 1)), 0),
+								f_or(has_medal('105_2', 1),
+									has_medal('105_3', 1)),
+								f_or(has_medal('106_2', 1),
+									has_medal('106_3', 1)),
+								f_or(has_medal('102_2', 1),
+									has_medal('102_3', 1)),
+								f_or(has_medal('103_2', 1),
+									has_medal('103_3', 1)),
+								f_or(has_medal('101_2', 1),
+									has_medal('101_3', 1)),
+								f_or(has_medal('100_2', 1),
+									has_medal('100_3', 1)),
+								f_or(has_medal('107_2', 1),
+									has_medal('107_2', 1))),0),
 
 			#Infantry Combat of Merit Medal
 			('206',	'Icmm',	LIMIT_SINGLE, 	f_and(	has_medal('401', 1),
@@ -871,7 +912,7 @@ medal_data = (
 			#Distinguished Pan Asian Star, times divided by 10
 			('209', 'Dpa', LIMIT_SINGLE, 	f_and(	army_time (1, 180),
 								global_stat ('attp-1', 5400),
-								global_stat ('awin-1', 300)), 0),
+								global_stat ('awin-1', 400)), 0),
 
 
 			#Meritorius Conquest Medal, times divided by 10
@@ -937,7 +978,7 @@ medal_data = (
 			('217',	'Attm',	LIMIT_SINGLE, f_and(	player_score('titanAirDrops', 10),
 								global_stat('vtp-4', 9000)),  0),
 
-			#Titan Medallion, times divided by 10, co-op ready, best player count set to 20 from 70
+			#Titan Medallion, times divided by 10, co-op ready
 			('218',	'Tme',	LIMIT_SINGLE, f_and(	f_plus (	game_mode_time (1),
 								global_stat ('tgpm-3'), 5400),
 								game_mode_kills (3, 10),
@@ -999,7 +1040,7 @@ medal_data = (
 			('411', 'Erp', LIMIT_MULTI, player_score_multiple_times ('revives', 8, '411'), 5),
 
 			#Titan survival pin
-			 ('412', 'Tsp',	LIMIT_MULTI, object_stat_multiple_times ('weapons', 'kills', WEAPON_TYPE_FLIPPER_MINE, 4, '412'), 10),
+			('412', 'Tsp',	LIMIT_MULTI, object_stat_multiple_times ('weapons', 'kills', WEAPON_TYPE_FLIPPER_MINE, 4, '412'), 10),
 
 			#Firearm Efficiency Pin
 			('413',	'Fep', LIMIT_MULTI, f_plus(	object_stat_multiple_times ('weapons', 'kills', WEAPON_TYPE_EU_PISTOL, 4, '413', 1),

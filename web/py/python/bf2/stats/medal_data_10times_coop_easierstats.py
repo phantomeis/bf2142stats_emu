@@ -380,7 +380,7 @@ def f_mult(a, b, value=None):
 
 medal_data = (	
 		#Badges
-			#Support Service Badge 
+			#Support Service Badge, time divided by 10
 
 			#Basic
 			('100_1', 'ssb', LIMIT_SINGLE, object_stat ('kits', 'kills', KIT_TYPE_SUPPORT, 12), 20),
@@ -394,7 +394,7 @@ medal_data = (
 								global_stat ('ktt-3', 18000),
 								object_stat ('kits', 'kills', KIT_TYPE_SUPPORT, 30)), 1000),
 
-			#Recon Service Badge 
+			#Recon Service Badge, time divided by 10
 			('101_1', 'rsb', LIMIT_SINGLE, object_stat ('kits', 'kills', KIT_TYPE_RECON, 12), 20),
 			
 			('101_2', 'rsb', LIMIT_SINGLE, f_and( 	has_medal ('101_1'),
@@ -406,7 +406,7 @@ medal_data = (
 								object_stat ('kits', 'kills', KIT_TYPE_RECON, 30)), 1000),
 
 
-			#Assault Service Badge 
+			#Assault Service Badge, time divided by 10
 			('102_1', 'asb', LIMIT_SINGLE, object_stat ('kits', 'kills', KIT_TYPE_ASSAULT, 12), 20),
 			
 			('102_2', 'asb', LIMIT_SINGLE, f_and( 	has_medal ('102_1'),
@@ -418,7 +418,7 @@ medal_data = (
 								object_stat ('kits', 'kills', KIT_TYPE_ASSAULT, 30)), 1000),
 
 
-			#Anti-Vehicle Badge
+			#Anti-Vehicle Badge, time divided by 10
 			('103_1', 'avsb', LIMIT_SINGLE, object_stat ('kits', 'kills', KIT_TYPE_ANTI_VEHICLE, 12), 20),
 			
 			('103_2', 'avsb', LIMIT_SINGLE, f_and( 	has_medal ('103_1'),
@@ -442,14 +442,14 @@ medal_data = (
 								player_stat ('squadLeaderBeaconSpawns', 15)), 1000),
 
 			#Collectors Badge, changed to only require 3/5/10 knifekills in a round than 7/10/17, gold only needs 100 global knifes than 150
-			('105_1', 'cb',	LIMIT_SINGLE, object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 3), 40), 
+			('105_1', 'cb',	LIMIT_SINGLE, object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 3), 40),
 			('105_2', 'cb',	LIMIT_SINGLE, f_and( 	has_medal ('105_1'),
 								global_stat ('wkls-12', 50),
-								object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 5)), 500), 
+								object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 5)), 500),
 
 			('105_3', 'cb',	LIMIT_SINGLE, f_and( 	has_medal ('105_2'),
-								global_stat ('wkls-12', 100), 
-								object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 10)), 1000), 
+								global_stat ('wkls-12', 100),
+								object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 10)), 1000),
 
 	
 			#Pistol Commendation Badge,change silver to only require 25 global pistol kills than 50, gold to only require 100 global pistol kills than 300, only 10 per round than 18
@@ -509,7 +509,7 @@ medal_data = (
 										object_stat ('vehicles', 'kills', VEHICLE_TYPE_ANTI_AIR)),
 										object_stat ('weapons', 'kills', WEAPON_TYPE_VEHICLE_AA), 30)), 1000),
 
-			#Commander Exellence Badge, badge now works for Coo-op
+			#Commander Exellence Badge, badge now works for Co-op
 			('109_1', 'ceb', LIMIT_SINGLE, f_and( 	player_score('cmdPyScore', 30),
 								f_mult(	game_mode_time (3, 1), 
 									player_score('cmdPyScore'), 1)), 40),
@@ -673,6 +673,15 @@ medal_data = (
 								player_score ('titanCoreDestroyed', 1),
 								f_plus(	global_stat ('tcd'),
 									global_stat ('tcrd'), 40)), 1000),
+		#Artic Combat Badge   THIS AWARD IS BULLSHIT BECAUSE NORTHERNSTRIKE MAPS/VEHICLES ARENT EVEN IN THE DATABASE
+		#('120_1', 'acb', LIMIT_SINGLE, f_plus( object_stat ('vehicles', 'rtime', VEHICLE_TYPE_HOVER_FAV),
+		#					object_stat ('vehicles', 'rtime', VEHICLE_TYPE_IFV), 300), 20),
+		#('120_2', 'acb', LIMIT_SINGLE, f_and( f_plus( global_stat() )),500),					
+
+
+		
+		
+		#Vehicle Excellence Badge
 		#Ribbons
 
 			#Air Defense Ribbon
@@ -758,11 +767,13 @@ medal_data = (
 			#European Duty Ribbon, times divided by 10
 			('312',	'Edr',	LIMIT_SINGLE, f_and(	 f_plus( 	army_time (0), 
 								global_stat('attp-0'), 43200),
-								played_all_maps(0)), 50),		
+								played_all_maps(0)), 50),
+								
 			#Soldier Merit Ribbon, ready for coop
 			('313',	'Smr',	LIMIT_SINGLE, f_and(	player_score('kills', 20),
 								f_plus(	global_stat('bksgpm-0'), 
-							     		global_stat('bksgpm-3'), 10)), 50),
+							     		global_stat('bksgpm-1'),
+										global_stat('bksgpm-3'),10)), 50),
 
 			#Good Conduct Ribbon, times divided by 10
 			('314',	'Gcr',	LIMIT_SINGLE, f_and(	player_score ('kills', 10),
@@ -775,7 +786,8 @@ medal_data = (
 			#Legion Of Merit Ribbon, times divided by 10, co-op ready
 			('315',	'Lomr',	LIMIT_SINGLE, f_and(	player_score ('kills', 10),
 								f_plus( global_stat('bksgpm-0'),
-									global_stat('bksgpm-3'), 10),
+										global_stat('bksgpm-1'),
+										global_stat('bksgpm-3'), 10),
 								f_plus( player_stat ('timePlayed'),
 									global_stat ('tt'), 43200)), 2000),
 
@@ -797,6 +809,13 @@ medal_data = (
 			('319',	'Tcr',	LIMIT_SINGLE, f_and(	player_score('cmdTitanScore', 10),
 								global_stat('ctgpm-3', 9000)), 500),
 
+			#Operation Snowflake
+			
+			#Cold Front Unit Service Ribbon
+			
+			#Transporter Duty Ribbon
+			
+			#Meritorius Winterstrike Ribbon
 		#Medals
 			
 			#Bronze Star
@@ -820,24 +839,45 @@ medal_data = (
 
 			#Infantry Combat Medal
 			('204',	'Icm', LIMIT_SINGLE, f_and(	has_medal('401', 1),
-								has_medal('105_1', 1),
-								has_medal('106_1', 1),
-								has_medal('102_1', 1),
-								has_medal('103_1', 1),
-								has_medal('101_1', 1),
-								has_medal('100_1', 1),
-								has_medal('107_1', 1)), 0),
-								
+								f_or(has_medal('105_1', 1),
+									has_medal('105_2', 1),
+									has_medal('105_3', 1)),
+								f_or(has_medal('106_1', 1),
+									has_medal('106_2', 1),
+									has_medal('106_3', 1)),
+								f_or(has_medal('102_1', 1),
+									has_medal('102_2', 1),
+									has_medal('102_3', 1)),
+								f_or(has_medal('103_1', 1),
+									has_medal('103_2', 1),
+									has_medal('103_3', 1)),
+								f_or(has_medal('101_1', 1),
+									has_medal('101_2', 1),
+									has_medal('101_3', 1)),
+								f_or(has_medal('100_1', 1),
+									has_medal('100_2', 1),
+									has_medal('100_3', 1)),
+								f_or(has_medal('107_1', 1),
+									has_medal('107_2', 1),
+									has_medal('107_3', 1))), 0),
+
 
 			#Meritorius Infantry Combat Badge
 			('205',	'Micb',	LIMIT_SINGLE, 	f_and(	has_medal('401', 1),
-								has_medal('105_2', 1),
-								has_medal('106_2', 1),
-								has_medal('102_2', 1),
-								has_medal('103_2', 1),
-								has_medal('101_2', 1),
-								has_medal('100_2', 1),
-								has_medal('107_2', 1)), 0),
+								f_or(has_medal('105_2', 1),
+									has_medal('105_3', 1)),
+								f_or(has_medal('106_2', 1),
+									has_medal('106_3', 1)),
+								f_or(has_medal('102_2', 1),
+									has_medal('102_3', 1)),
+								f_or(has_medal('103_2', 1),
+									has_medal('103_3', 1)),
+								f_or(has_medal('101_2', 1),
+									has_medal('101_3', 1)),
+								f_or(has_medal('100_2', 1),
+									has_medal('100_3', 1)),
+								f_or(has_medal('107_2', 1),
+									has_medal('107_2', 1))),0),
 
 			#Infantry Combat of Merit Medal
 			('206',	'Icmm',	LIMIT_SINGLE, 	f_and(	has_medal('401', 1),
@@ -998,7 +1038,7 @@ medal_data = (
 			('411', 'Erp', LIMIT_MULTI, player_score_multiple_times ('revives', 8, '411'), 5),
 
 			#Titan survival pin
-			 ('412', 'Tsp',	LIMIT_MULTI, object_stat_multiple_times ('weapons', 'kills', WEAPON_TYPE_FLIPPER_MINE, 4, '412'), 10),
+			('412', 'Tsp',	LIMIT_MULTI, object_stat_multiple_times ('weapons', 'kills', WEAPON_TYPE_FLIPPER_MINE, 4, '412'), 10),
 
 			#Firearm Efficiency Pin
 			('413',	'Fep', LIMIT_MULTI, f_plus(	object_stat_multiple_times ('weapons', 'kills', WEAPON_TYPE_EU_PISTOL, 4, '413', 1),
@@ -1043,4 +1083,4 @@ def update_rank_criteria ():
 			)
 		)
 
-if g_debug: print "medal_data.py[1045]: rank: ", rank_data[rank - 1][0], ", xp: ", host.pers_getRankExperience(rank)
+		if g_debug: print "medal_data.py[1045]: rank: ", rank_data[rank - 1][0], ", xp: ", host.pers_getRankExperience(rank)
