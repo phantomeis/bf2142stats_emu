@@ -452,15 +452,17 @@ medal_data = (
 								global_stat ('wkls-12', 150),
 								object_stat ('weapons', 'kills', WEAPON_TYPE_KNIFE, 17)), 1000),
 
-	
+
 			#Pistol Commendation Badge
 			('106_1', 'pcb', LIMIT_SINGLE, f_plus(	object_stat ('weapons', 'kills', WEAPON_TYPE_EU_PISTOL),
 								object_stat ('weapons', 'kills', WEAPON_TYPE_PAC_PISTOL), 5), 20),
+
 			('106_2', 'pcb', LIMIT_SINGLE, f_and( 	has_medal ('106_1'),
 								f_plus(	global_stat ('wkls-5'),
 									global_stat ('wkls-11'), 50),
 								f_plus(	object_stat ('weapons', 'kills', WEAPON_TYPE_EU_PISTOL),
 									object_stat ('weapons', 'kills', WEAPON_TYPE_PAC_PISTOL), 7)), 500),
+
 			('106_3', 'pcb', LIMIT_SINGLE, f_and( 	has_medal ('106_2'),
 								f_plus(	global_stat ('wkls-5'),
 									global_stat ('wkls-11'), 300),
