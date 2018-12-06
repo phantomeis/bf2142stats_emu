@@ -573,22 +573,22 @@ medal_data = (
 								player_score ('heals', 15)), 1000),
 
 			#Resupply Service Badge, time divided by 10
-			('113_1', 'resb', LIMIT_SINGLE, player_score ('ammos', 8), 20),
+			('113_1', 'rsb', LIMIT_SINGLE, player_score ('ammos', 8), 20),
 
-			('113_2', 'resb', LIMIT_SINGLE, f_and( 	has_medal ('113_1'),
+			('113_2', 'rsb', LIMIT_SINGLE, f_and( 	has_medal ('113_1'),
 								global_stat ('etpk-6', 3600),
 								player_score ('ammos', 10)), 500),
 
-			('113_3', 'resb', LIMIT_SINGLE, f_and( 	has_medal ('113_2'),
+			('113_3', 'rsb', LIMIT_SINGLE, f_and( 	has_medal ('113_2'),
 								global_stat ('etpk-6', 18000),
 								global_stat ('resp', 400),
 								player_score ('ammos', 15)), 1000),
 
 			#Armor Service Badge, times divided by 10  
-			('114_1', 'arsb', LIMIT_SINGLE, f_plus(	object_stat ('vehicles', 'rtime', VEHICLE_TYPE_TANK),
+			('114_1', 'asb', LIMIT_SINGLE, f_plus(	object_stat ('vehicles', 'rtime', VEHICLE_TYPE_TANK),
 								object_stat ('vehicles', 'rtime', VEHICLE_TYPE_MEC), 900), 20),
 
-			('114_2', 'arsb', LIMIT_SINGLE, f_and( 	has_medal ('114_1'),
+			('114_2', 'asb', LIMIT_SINGLE, f_and( 	has_medal ('114_1'),
 								f_plus(	object_stat ('vehicles', 'kills', VEHICLE_TYPE_TANK),
 									object_stat ('vehicles', 'kills', VEHICLE_TYPE_MEC), 15),
 								f_plus(	f_plus(	global_stat ('vtp-0'), 
@@ -596,7 +596,7 @@ medal_data = (
 										global_stat ('vtp-2'), 9000)), 500),
 
 
-			('114_3', 'arsb', LIMIT_SINGLE, f_and( 	has_medal ('114_2'),
+			('114_3', 'asb', LIMIT_SINGLE, f_and( 	has_medal ('114_2'),
 								f_plus(	object_stat ('vehicles', 'kills', VEHICLE_TYPE_TANK),
 									object_stat ('vehicles', 'kills', VEHICLE_TYPE_MEC), 35),
 								f_plus(	f_plus(	global_stat ('vtp-0'), 
@@ -801,7 +801,7 @@ medal_data = (
 								global_stat ('vkls-7'), 200), 500),
 
 			#Aerial Service Ribbon, times divided by 10
-			('317',	'Aesr',	LIMIT_SINGLE, f_and(	player_score ('titanAirDrops', 15),
+			('317',	'Asr',	LIMIT_SINGLE, f_and(	player_score ('titanAirDrops', 15),
 								f_plus(	global_stat ('vtp-10'),
 									global_stat ('vtp-4'), 9000)), 500),
 
@@ -1009,7 +1009,7 @@ medal_data = (
 			('402',	'Psp', LIMIT_MULTI, player_score_multiple_times ('titanPartsDestroyed', 4, '402'), 20),
 			
 			#Titan Destructor Pin
-			('403',	'Tdsp', LIMIT_MULTI, player_score_multiple_times ('titanWeaponsDestroyed', 4, '403'), 20),
+			('403',	'Tdp', LIMIT_MULTI, player_score_multiple_times ('titanWeaponsDestroyed', 4, '403'), 20),
 
 			#Troop Transporter Pin
 			('404',	'Ttp', LIMIT_MULTI, player_score_multiple_times ('titanAirDrops', 10, '404'), 20),
@@ -1019,7 +1019,7 @@ medal_data = (
 
 
 			#Titan Defender Pin
-			('406',	'Tdep', LIMIT_MULTI, player_score_multiple_times ('titanDefendKills', 7, '406'), 20),
+			('406',	'Tdp', LIMIT_MULTI, player_score_multiple_times ('titanDefendKills', 7, '406'), 20),
 
 			#Infiltrator Pin   
 			('407',	'Ip', LIMIT_MULTI, f_plus( 	f_plus(	object_stat_multiple_times ('weapons', 'headShots', WEAPON_TYPE_PAC_SNIPER, 5, '407', 1),
