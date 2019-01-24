@@ -1,1 +1,1 @@
-Don't type real information, it will not get encrypted in the database!
+﻿Dont type real account information, since it will not get encrypted in the database!
